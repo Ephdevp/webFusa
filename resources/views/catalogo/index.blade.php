@@ -57,13 +57,13 @@
                         @endif --}}
                     @endif
                 </div>
-
+                
                 @if ($trigger == true)
-                    <h2 class="text-center">{{ $txtId->nombre_prod }}</h2>
+                    <h2 class="text-center mb-4">{{ $txtId->nombre_prod }}</h2>
                     <div class="container text-center">
                         <div
                             class="col-lg-4 shadow rounded-3 col-md-6 portfolio-item portfolio-items filter-cat text-center mx-auto">
-                            <img src="{{ asset('assets/img/catalogue/' . $txtId->imagen_url) }}" class="w-100 h-100"
+                            <img src="{{ asset('assets/img/catalogue/' . $txtId->imagen_url) }}" class="w-75 h-75 mt-4" 
                                 alt="producto">
                         </div>
                         <div class="mt-3 col-lg-4 col-md-6 mx-auto">
@@ -80,7 +80,7 @@
                         <div class="row portfolio-container mx-auto" data-aos="fade-up">
                             <div
                                 class="col-lg-4 shadow rounded-3 col-md-6 portfolio-item portfolio-items filter-{{ $temp->categoria_prod }} text-center">
-                                <img src="{{ asset('assets/img/catalogue/' . $temp->imagen_url) }}" class="w-100 h-100"
+                                <img src="{{ asset('assets/img/catalogue/' . $temp->imagen_url) }}" class="w-75 h-75 mt-4"
                                     alt="">
                                 <div class="portfolio-info">
                                     <h4>{{ $temp->nombre_prod }} </h4>

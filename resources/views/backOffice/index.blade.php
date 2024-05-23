@@ -21,16 +21,26 @@
                 <div class="titulo">
                     Administrar
                 </div>
-                <form method="post" id="loginform">
-                    <input type="text" name="usuario" placeholder="Usuario" required>
+                <form method="post" id="loginform" action="{{route("backOffice.login")}}">
+                    @csrf
+                    @error('name')
+                        <div class="text-warning mb-1"><i class="bi bi-exclamation-triangle"></i> {{$message}}</i></div>
+                    @enderror
+                    <input class="mb-4" type="text" name="name" value="{{old("name")}}" placeholder="Usuario">
 
-                    <input type="password" placeholder="Contraseña" name="password" required>
+                    @error('password')
+                        <div class="text-warning mb-1"><i class="bi bi-exclamation-triangle"></i> {{$message}}</i></div>  
+                    @enderror
+                    <input type="password" placeholder="Contraseña" value="{{old("password")}}" name="password">
 
                     <button class="mt-5 btn btn-light" type="submit" title="Ingresar" name="Ingresar"><b>Ingresar</b></button>
                 </form>
                 <div class="pie-form">
                     <p style="color:white;">ingrese un usuario y una contraseña validos</p>
                 </div>
+                @if(session('error'))
+                    <p class="text-warning text-center"><i class="bi bi-exclamation-triangle"></i> {{session("error")}}</p>
+                @endif
             </div>
             <div class="inferior">
                 <a class="text-dark" href="{{route('view.index')}}">Volver</a>

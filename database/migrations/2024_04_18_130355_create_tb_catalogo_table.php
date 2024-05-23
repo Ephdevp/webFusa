@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_catalogo', function (Blueprint $table) {
             $table->id();
-            $table->string("categoria_prod");
+            $table->string("categoria_prod")->nullable();
             $table->string('nombre_prod');
             $table->string('imagen_url');
             $table->text('descripcion');

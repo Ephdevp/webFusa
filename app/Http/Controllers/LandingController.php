@@ -10,6 +10,7 @@ use App\Http\Requests\MessageRequest;
 
 class LandingController extends Controller
 {
+//------------------------------------------------------------------------
     public function index(): View
     {
         $cont = 1;
@@ -24,6 +25,7 @@ class LandingController extends Controller
         return view('landing.index', compact('lineProdName', 'cont'));
     }
 
+//------------------------------------------------------------------------
     public function message(MessageRequest $request): RedirectResponse
     {
         $check = ($request->check == "1")? true: false;
@@ -36,6 +38,8 @@ class LandingController extends Controller
                 "leido" => false
             ]);
             session()->flash("send", true);
+            
             return redirect()->route("view.index");
     }
+//------------------------------------------------------------------------
 }

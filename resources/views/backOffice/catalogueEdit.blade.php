@@ -16,7 +16,7 @@
                             placeholder="" />
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="" class="form-label">Linea de Producto</label>
                         <select class="form-select form-select-lg" name="categoria_prod" id="">
                             <option value="{{$id->categoria_prod}}">{{str_replace("_", " ", $id->categoria_prod)}}</option>
@@ -34,17 +34,17 @@
                             <option value="Material_Poligráfico">Material Poligráfico</option>
                             <option value="Material_de_oficina">Material de oficina</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="" class="form-label">Precio CUP</label>
-                        <input type="text" class="form-control" name="precio_cup" value="{{$id->precio_cup}}" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="precio_cup" value="{{$id->precio_cup}}" required aria-describedby="helpId"
                             placeholder="" />
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Precio USD</label>
-                        <input type="text" class="form-control" name="precio_usd" value="{{$id->precio_usd}}" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="precio_usd" value="{{$id->precio_usd}}" required aria-describedby="helpId"
                             placeholder="" />
                     </div>
 
@@ -60,7 +60,7 @@
 
                     <div class="mb-3">
                         <label for="" class="form-label">Descripción</label>
-                        <textarea class="form-control" name="descripcion" rows="3">{{$id->descripcion}}</textarea>
+                        <textarea class="form-control" name="descripcion" rows="3" required>{{$id->descripcion}}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-success">Registrar</button>

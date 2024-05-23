@@ -57,7 +57,7 @@
                                 <i class="bi bi-people"></i> Usuarios
                             </a>
                         </li>
-                        <li><a class="text-light btn" href="{{route('back_office.login')}}"><i class="bi bi-door-closed"></i> Salir</a></li>
+                        <li><a class="text-light btn" href="{{route('logout')}}"><i class="bi bi-door-closed"></i> Salir</a></li>
                     </ul>
                 </div>
             </div>

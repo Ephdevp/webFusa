@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('tb_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->enum('status', ['active', 'disable'])->default('active');
+            $table->enum('categories', ['admin', 'user'])->default("user");
+            $table->boolean('password_define')->default(false);
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class CatalogoController extends Controller
 
         return view("catalogo.index", compact("name", "catalogo", 'trigger', "categorias"));
     }
+
 //---------------------------------getProd method--------------------------------------------------
     public function getProd(Catalogo $txtId): View
     {
@@ -29,7 +30,8 @@ class CatalogoController extends Controller
 
         return view("catalogo.index", compact('name', 'txtId', 'trigger'));
     }
-//---------------------------------------------------------------------------------------------------
+
+//---------------------------------search method--------------------------------------------------
     public function search(Request $request)
     {
         $name = "catalogo";

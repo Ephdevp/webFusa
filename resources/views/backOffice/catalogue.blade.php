@@ -17,7 +17,7 @@
     </div>
     <div class="container">
         <div class="row">
-            @foreach ( $catalogo as $temp )
+            @forelse ( $catalogo as $temp )
                 <div class="card col-3 me-3 mt-3" style="width: 15rem; height:auto;">
                     <img src="{{asset("assets/img/catalogue/".$temp->imagen_url)}}" class="card-img-top mt-2 mx-auto" style="width: 12rem; height:12rem;" alt="{{$temp->nombre_prod}}">
                     <div class="card-body">
@@ -34,7 +34,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p class="text-center text-danger">No hay registros para mostrar</p>
+            @endforelse
         </div>
     </div>
     <div class="text-center mb-4">

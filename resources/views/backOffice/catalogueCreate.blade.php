@@ -11,11 +11,11 @@
                     @csrf
                     <div class="mb-3">
                         <label for="" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre_prod" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="nombre_prod" required aria-describedby="helpId"
                             placeholder="" />
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="" class="form-label">Linea de Producto</label>
                         <select class="form-select form-select-lg" name="categoria_prod">
                             <option value="Ferretería_general_y_accesorios">Ferretería general y accesorios</option>
@@ -32,29 +32,29 @@
                             <option value="Material_Poligráfico">Material Poligráfico</option>
                             <option value="Material_de_oficina">Material de oficina</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="" class="form-label">Precio CUP</label>
-                        <input type="text" class="form-control" name="precio_cup" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="precio_cup" required aria-describedby="helpId"
                             placeholder="" />
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Precio USD</label>
-                        <input type="text" class="form-control" name="precio_usd" aria-describedby="helpId"
+                        <input type="text" class="form-control" name="precio_usd" required aria-describedby="helpId"
                             placeholder="" />
                     </div>
 
                     <div class="mb-3">
                         <label for="" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" name="imagen_url" placeholder="" aria-describedby="fileHelpId" />
+                        <input type="file" class="form-control" name="imagen_url" placeholder="" required aria-describedby="fileHelpId" />
                     </div>
 
 
                     <div class="mb-3">
                         <label for="" class="form-label">Descripción</label>
-                        <textarea class="form-control" name="descripcion" rows="3"></textarea>
+                        <textarea class="form-control" name="descripcion" rows="3" required></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-success">Registrar</button>
