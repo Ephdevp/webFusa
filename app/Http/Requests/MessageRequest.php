@@ -22,10 +22,25 @@ class MessageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "remitente" => "required",
-            "telefono" => "required",
-            "mensaje" => "required",
+            "remitente" => "required|string",
+            "telefono" => "required|integer",
+            "mensaje" => "required|string|min:5",
             "check" => "required"
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "remitente.required" => "failed",
+            "remitente.string" => "failed",
+            "telefono.required" => "failed",
+            "telefono.integer" => "failed",
+            "mensaje.required" => "failed",
+            "mensaje.string" => "failed",
+            "mensaje.min" => "failed",
+            "check.required" => "failed"
+        ];
+    }
+
 }

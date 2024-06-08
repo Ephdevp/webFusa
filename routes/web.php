@@ -16,7 +16,9 @@ Route::get("/", function(){return redirect()->route("view.index");});
 Route::get('/landing', [LandingController::class, "index"])->name("view.index");
 
 //----------------------------------------message route---------------------------------------------------------
-Route::post('/', [LandingController::class, 'message'])->name('message');
+Route::post('/message', [LandingController::class, 'message'])->name('message');
+
+
 
 //=========================================End Landing Controller===============================================//
 
@@ -55,7 +57,7 @@ Route::get("backOffice/logout", [BackOfficeController::class, "logout"])->name("
 //-------------------------------------------/End login/-----------------------------------------------------------
 
 //-----------------------------------------/Group/-----------------------------------------------------------------
-Route::middleware('loginAuth')->controller(BackOfficeController::class)->group(function(){
+Route::middleware(['loginAuth', 'checkStatus'])->controller(BackOfficeController::class)->group(function(){
 
 //-----------------------------------back office catalogue route---------------------------------------------------
 Route::view("backOffice/catalogue/create", "backOffice.catalogueCreate")->name("catalogue.create");
@@ -73,10 +75,13 @@ Route::delete("backOffice/messages/delete/{id}", "destroy")->name('message.delet
 Route::post("backOffice/messages", "search")->name("message.search");
 
 //-----------------------------------back office users route--------------------------------------------------------
-Route::get("backOffice/users", "getUser")->name("back_office.getUsers");
-Route::delete("backOffice/users/{id}", "destroyUser")->name("back_office.destroyUser");
-Route::view("backOffice/users/create", "backOffice.usersCreate")->name("user.create");
-Route::put("backOffice/users/{id}", "updateUser")->name("back_office.updateUser");
+Route::get("backOffice/resetPassword", "resetPassword")->withoutMiddleware('checkStatus')->name("back_office.resetPassword");
+Route::post("backOffice/reset", "userResetPassword")->withoutMiddleware('checkStatus')->name("back_office.userResetPassword");
+Route::get("backOffice/users/{id}", 'restartPassword')->middleware('checkStatus')->name('back_office.restartPassword');
+Route::get("backOffice/users", "getUser")->middleware('checkRol')->name("back_office.getUsers");
+Route::delete("backOffice/users/{id}", "destroyUser")->middleware('checkRol')->name("back_office.destroyUser");
+Route::view("backOffice/users/create", "backOffice.usersCreate")->middleware('checkRol')->name("user.create");
+Route::put("backOffice/users/{id}", "updateUser")->middleware('checkRol')->name("back_office.updateUser");
 
 //-----------------------------------------/End Group/---------------------------------------------------------------
 

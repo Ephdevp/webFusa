@@ -57,14 +57,9 @@
             </div>
         </div>
 
-        <!-- Toast -->
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-body text-center" style="color: #EE9734">
-                    <i class="bi bi-check2-circle me-1"></i>Mensaje enviado con éxito
-                </div>
-            </div>
-        </div>
+        @include('landing._partials.toatsSuccess')
+
+        @include('landing._partials.toatsFailed')
 
     </footer><!-- End Footer -->
 
@@ -87,12 +82,25 @@
     @if (session("send"))
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-                var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-                var toastList = toastElList.map(function (toastEl) {
-                    return new bootstrap.Toast(toastEl)
-                });
-                toastList.forEach(toast => toast.show());
+                // Seleccionar solo el .toast con id myToast
+                var toastEl = document.getElementById('success');
+                if (toastEl) {
+                    var myToast = new bootstrap.Toast(toastEl);
+                    myToast.show();
+                }
             });
         </script>
     @endif
 
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Seleccionar solo el .toast con id myToast
+                var toastEl = document.getElementById('failed');
+                if (toastEl) {
+                    var myToast = new bootstrap.Toast(toastEl);
+                    myToast.show();
+                }
+            });
+        </script>
+    @endif

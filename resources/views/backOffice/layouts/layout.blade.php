@@ -52,11 +52,13 @@
                                 <i class="bi bi-newspaper"></i> Publicaciones
                             </a>
                         </li> --}}
-                        <li class="gap-1">
-                            <a class="text-light btn" href="{{route('back_office.getUsers')}}">
-                                <i class="bi bi-people"></i> Usuarios
-                            </a>
-                        </li>
+                        @if (auth()->user()->categories == "admin")
+                            <li class="gap-1">
+                                <a class="text-light btn" href="{{route('back_office.getUsers')}}">
+                                    <i class="bi bi-people"></i> Usuarios
+                                </a>
+                            </li>
+                        @endif
                         <li><a class="text-light btn" href="{{route('logout')}}"><i class="bi bi-door-closed"></i> Salir</a></li>
                     </ul>
                 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UserResetPasswordRequest;
 use Illuminate\Http\Request;
 use App\Models\Catalogo;
 use App\Models\Mensaje;
@@ -11,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class BackOfficeController extends Controller
 {
@@ -19,6 +21,7 @@ class BackOfficeController extends Controller
     {
         return view("backOffice.index");
     }
+//------------------------------------------------------------------------
 
     public function login(LoginRequest $request): RedirectResponse
     {
@@ -28,6 +31,7 @@ class BackOfficeController extends Controller
         }
         return redirect()->route("back_office.getMessage")->with("success", "Sesion iniciada con exito");
     }
+//------------------------------------------------------------------------
 
     public function logout(Request $request): RedirectResponse
     {
@@ -36,6 +40,24 @@ class BackOfficeController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route("back_office.index");    
+    }
+//------------------------------------------------------------------------
+
+    public function resetPassword(): View
+    {
+        return view("backOffice.resetPassword");
+    }
+//------------------------------------------------------------------------
+
+    public function userResetPassword(UserResetPasswordRequest $request): RedirectResponse
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        $user->password = Hash::make($request->password);
+        $user->password_define = true;
+        $user->save();
+        
+        return redirect()->route("back_office.getMessage");
     }
 //==================================End Login================================
 
@@ -59,7 +81,9 @@ class BackOfficeController extends Controller
             "precio_cup" => $request->precio_cup,
             "precio_usd" => $request->precio_usd,
             "descripcion" => $request->descripcion,
-            "imagen_url" => $fileName
+            "imagen_url" => $fileName,
+            "publicado_por" => auth()->user()->name,
+            "editado_por" => auth()->user()->name
         ]);
 
         session()->flash("create");
@@ -91,7 +115,8 @@ class BackOfficeController extends Controller
                 "precio_cup" => $request->precio_cup,
                 "precio_usd" => $request->precio_usd,
                 "descripcion" => $request->descripcion,
-                "imagen_url" => $fileName
+                "imagen_url" => $fileName,
+                "editado_por" => auth()->user()->name
             ]);
         }else{
             $id->update([
@@ -99,7 +124,8 @@ class BackOfficeController extends Controller
                 "nombre_prod" => $request->nombre_prod,
                 "precio_cup" => $request->precio_cup,
                 "precio_usd" => $request->precio_usd,
-                "descripcion" => $request->descripcion
+                "descripcion" => $request->descripcion,
+                "editado_por" => auth()->user()->name
             ]);
         }
 
@@ -185,7 +211,7 @@ class BackOfficeController extends Controller
 //=================================Users==================================
     public function getUser(): View
     {
-        $usuarios = User::simplePaginate(3);
+        $usuarios = User::simplePaginate(25);
 
         return view("backOffice.users", compact("usuarios"));
     }
@@ -195,6 +221,20 @@ class BackOfficeController extends Controller
     public function destroyUser(User $id):RedirectResponse
     {   
         $id->delete();
+        return redirect()->route("back_office.getUsers");
+    }
+
+//------------------------------------------------------------------------
+
+    public function restartPassword(User $id):RedirectResponse
+    {
+        if($id->categories == "admin")
+        {
+            $id->update(["password" => "default", "password_define" => false]);
+        }else{
+            $id->update(["password" => "comercial", "password_define" => false]);
+        }
+
         return redirect()->route("back_office.getUsers");
     }
 

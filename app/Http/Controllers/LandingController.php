@@ -18,9 +18,9 @@ class LandingController extends Controller
         $lineProdName = array('Ferretería general y accesorios', 'Medios de protección, seguridad y accesorios', 
         'Sistemas eléctricos, de iluminación y accesorios', 'Pinturas, barnices, diluentes y accesorios', 
         'Sistema de estantería metálica y accesorios', 'Sistemas ligeros de construcción y accesorios', 
-        'Materiales para la construcción, impermeabilizantes y accesorios', 'Cerrajería y accesorios', 
-        'Sistemas hidráulicos, sanitarios, de fluido industrial y accesorios', 'Sistemas de cubiertas y accesorios', 
-        'Sistemas de clima, refrigeración y accesorios', 'Material Poligráfico', 'Material de oficina');
+        'Materiales para la construcción, impermeabilizantes y accesorios', 'Sistemas hidráulicos, sanitarios, de fluido industrial y accesorios', 
+        'Cerrajería y accesorios', 'Sistemas de cubiertas y accesorios', 
+        'Sistemas de clima, refrigeración y accesorios', 'Materiales para artesanos', 'Material de oficina', 'Energias renobables');
 
         return view('landing.index', compact('lineProdName', 'cont'));
     }
@@ -37,7 +37,7 @@ class LandingController extends Controller
                 "check" => $check,
                 "leido" => false
             ]);
-            session()->flash("send", true);
+            session()->flash("send");
             
             return redirect()->route("view.index");
     }

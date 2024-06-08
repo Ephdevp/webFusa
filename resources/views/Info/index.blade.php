@@ -96,6 +96,7 @@
                                     <li class="list-group-item list-group-item-action">Registro Mercantil</li>
                                     <li class="list-group-item list-group-item-action">Certificado de la ONEI</li>
                                     <li class="list-group-item list-group-item-action">Certificado de la ONAT</li>
+                                    <li class="list-group-item list-group-item-action">Último pago en la ONAT</li>
                                     <li class="list-group-item list-group-item-action">Tarjeta magnética MLC</li>
                                 </ul>
                             </div>

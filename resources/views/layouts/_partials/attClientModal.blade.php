@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <button class="btn btn-primary w-100 mb-2"><i
+                                                    <button type="submit" class="btn btn-primary w-100 mb-2"><i
                                                             class="bi bi-send"></i> Enviar</button>
                                                 </div>
                                                 <div class="col-12">
